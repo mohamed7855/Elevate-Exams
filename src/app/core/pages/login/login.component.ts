@@ -6,11 +6,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthApiService } from 'auth-api';
+import { ButtonComponent } from '../../../shared/components/ui/button/button.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ButtonComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -23,7 +24,9 @@ export class LoginComponent {
   constructor(private _authApiService: AuthApiService) {}
 
   login() {
-    this._authApiService.login(this.loginForm.value).subscribe((res) => {
-    });
+    this._authApiService.login(this.loginForm.value).subscribe((res) => {});
+  }
+  sayHello() {
+    alert('Hello');
   }
 }

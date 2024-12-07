@@ -11,12 +11,20 @@ import { LoginRes } from './interfaces/loginRes';
   providedIn: 'root',
 })
 export class AuthApiService implements AuthAPI {
+  
+  baseURL !:string
+  
+  set setBaseURL(url : string) {
+    this.baseURL ="https://exam.elevateegy.com" ;
+  }
+
   constructor(
     private _httpClient: HttpClient,
     private _authAPIAdapterService: AuthLoginAPIAdapterService
   ) {}
 
   login(data: LoginUser): Observable<LoginRes | never[]> {
+    const api = `${this.baseURL}${AuthEndpoint.LOGIN}`
     return this._httpClient.post(AuthEndpoint.LOGIN, data).pipe(
       map((res:any) => this._authAPIAdapterService.adapt(res)),
       catchError((err) => of([]))

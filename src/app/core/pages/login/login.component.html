@@ -4,4 +4,5 @@
     <input type="password" formControlName="password">
     <br>
     <button>Login</button>
+    <app-button [classes]="'w-50 bg-danger'" [text]="'add'" (clickEmitter)="sayHello()"></app-button>
 </form>
