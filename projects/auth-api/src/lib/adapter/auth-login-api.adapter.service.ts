@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { Adapter } from '../interfaces/adapter';
 import { LoginAPIRes, LoginRes } from '../interfaces/loginRes';
 import { RegisterAPIRes, RegisterRes } from '../interfaces/registerRes';
+import {
+  ForgetPasswordAPIRes,
+  ForgetPasswordRes,
+} from '../interfaces/forgetPasswordRes';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +21,10 @@ export class AuthLoginAPIAdapterService implements Adapter {
   }
 
   adaptRegister(data: RegisterAPIRes): RegisterRes {
+    return { ...data };
+  }
+
+  adaptForgetPassword(data: ForgetPasswordAPIRes): ForgetPasswordRes {
     return { ...data };
   }
 }

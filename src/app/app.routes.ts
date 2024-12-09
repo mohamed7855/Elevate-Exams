@@ -8,7 +8,8 @@ export const routes: Routes = [
         children: [
             {path: '', redirectTo: 'login', pathMatch: 'full'},
             {path: 'login', loadComponent: ()=>import ('./core/pages/login/login.component').then((c)=>c.LoginComponent)},
-            {path: 'register', loadComponent: ()=> import('./core/pages/register/register.component').then((c)=>c.RegisterComponent)}
+            {path: 'register', loadComponent: ()=> import('./core/pages/register/register.component').then((c)=>c.RegisterComponent)},
+            {path: 'forgetPassword', loadComponent: ()=>import('./core/pages/forget-password/forget-password.component').then((c)=>c.ForgetPasswordComponent)},
         ]
         
     },

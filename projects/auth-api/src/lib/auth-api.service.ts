@@ -5,9 +5,14 @@ import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AuthEndpoint } from './enums/AuthAPI.endpoint';
 import { Login } from './interfaces/login';
-import { LoginRes } from './interfaces/loginRes';
+import { LoginAPIRes, LoginRes } from './interfaces/loginRes';
 import { Register } from './interfaces/register';
 import { RegisterAPIRes, RegisterRes } from './interfaces/registerRes';
+import { ForgetPassword } from './interfaces/forgetPassword';
+import {
+  ForgetPasswordAPIRes,
+  ForgetPasswordRes,
+} from './interfaces/forgetPasswordRes';
 
 @Injectable({
   providedIn: 'root',
@@ -26,11 +31,11 @@ export class AuthApiService implements AuthAPI {
     this.setBaseURL();
   }
 
-  login(data: Login): Observable<LoginRes | never[]> {
+  login(data: Login): Observable<LoginRes> {
     const api = `${this.baseURL}${AuthEndpoint.LOGIN}`;
-    return this._httpClient.post(api, data).pipe(
-      map((res: any) => this._authAPIAdapterService.adaptLogin(res)),
-      catchError((err) => of([]))
+    return this._httpClient.post<LoginAPIRes>(api, data).pipe(
+      map((res: LoginAPIRes) => this._authAPIAdapterService.adaptLogin(res)),
+      catchError((err) => of())
     );
   }
 
@@ -44,6 +49,22 @@ export class AuthApiService implements AuthAPI {
         console.error('Registration error:', err);
         return throwError(
           () => new Error(err?.error?.message || 'Registration failed.')
+        );
+      })
+    );
+  }
+
+  forgetPassword(data: ForgetPassword): Observable<ForgetPasswordRes> {
+    const api = `${this.baseURL}${AuthEndpoint.FORGET_PASSWORD}`;
+    return this._httpClient.post<ForgetPasswordAPIRes>(api, data).pipe(
+      map((res: ForgetPasswordAPIRes) =>
+        this._authAPIAdapterService.adaptForgetPassword(res)
+      ),
+      catchError((err) => {
+        console.error('ForgetPassword error:', err);
+        return throwError(
+          () =>
+            new Error(err?.error?.message || 'Password reset request failed.')
         );
       })
     );
