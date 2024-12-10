@@ -6,6 +6,7 @@ import {
   ForgetPasswordAPIRes,
   ForgetPasswordRes,
 } from '../interfaces/forgetPasswordRes';
+import { VerifyCodeAPIRes, VerifyCodeRes } from '../interfaces/verifyCodeRes';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +26,10 @@ export class AuthLoginAPIAdapterService implements Adapter {
   }
 
   adaptForgetPassword(data: ForgetPasswordAPIRes): ForgetPasswordRes {
+    return { ...data };
+  }
+
+  adaptVerifyCode(data: VerifyCodeAPIRes): VerifyCodeRes {
     return { ...data };
   }
 }

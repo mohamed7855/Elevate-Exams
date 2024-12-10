@@ -13,6 +13,8 @@ import {
   ForgetPasswordAPIRes,
   ForgetPasswordRes,
 } from './interfaces/forgetPasswordRes';
+import { VerifyCode } from './interfaces/verifyCode';
+import { VerifyCodeAPIRes, VerifyCodeRes } from './interfaces/verifyCodeRes';
 
 @Injectable({
   providedIn: 'root',
@@ -65,6 +67,22 @@ export class AuthApiService implements AuthAPI {
         return throwError(
           () =>
             new Error(err?.error?.message || 'Password reset request failed.')
+        );
+      })
+    );
+  }
+
+  verifyCode(data: VerifyCode): Observable<VerifyCodeRes> {
+    const api = `${this.baseURL}${AuthEndpoint.VERIFY_PASSWORD}`;
+    return this._httpClient.post<VerifyCodeAPIRes>(api, data).pipe(
+      map((res: VerifyCodeAPIRes) =>
+        this._authAPIAdapterService.adaptVerifyCode(res)
+      ),
+      catchError((err) => {
+        console.error('ResetCode error:', err);
+        return throwError(
+          () =>
+            new Error(err?.error?.message || 'Code reset request failed.')
         );
       })
     );
