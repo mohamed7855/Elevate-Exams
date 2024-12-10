@@ -20,11 +20,16 @@ export class VerifyCodeComponent {
     resetCode: new FormControl(null, Validators.required),
   });
 
-  constructor(private _authApiService: AuthApiService) {}
+  constructor(
+    private _authApiService: AuthApiService,
+    private _router: Router
+  ) {}
 
   verifyCode() {
     this._authApiService
       .verifyCode(this.verifyCodeForm.value)
-      .subscribe((res) => {});
+      .subscribe((res) => {
+        this._router.navigate(['/auth/resetPassword']);
+      });
   }
 }

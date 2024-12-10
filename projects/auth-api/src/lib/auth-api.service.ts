@@ -15,6 +15,11 @@ import {
 } from './interfaces/forgetPasswordRes';
 import { VerifyCode } from './interfaces/verifyCode';
 import { VerifyCodeAPIRes, VerifyCodeRes } from './interfaces/verifyCodeRes';
+import { ResetPassword } from './interfaces/resetPassword';
+import {
+  ResetPasswordAPIRes,
+  ResetPasswordRes,
+} from './interfaces/resetPasswordRes';
 
 @Injectable({
   providedIn: 'root',
@@ -81,8 +86,23 @@ export class AuthApiService implements AuthAPI {
       catchError((err) => {
         console.error('ResetCode error:', err);
         return throwError(
+          () => new Error(err?.error?.message || 'Code reset request failed.')
+        );
+      })
+    );
+  }
+
+  resetPassword(data: ResetPassword): Observable<ResetPasswordRes> {
+    const api = `${this.baseURL}${AuthEndpoint.RESET_PASSWORD}`;
+    return this._httpClient.put<ResetPasswordAPIRes>(api, data).pipe(
+      map((res: ResetPasswordAPIRes) =>
+        this._authAPIAdapterService.adaptResetPassword(res)
+      ),
+      catchError((err) => {
+        console.error('ResetPassword error:', err);
+        return throwError(
           () =>
-            new Error(err?.error?.message || 'Code reset request failed.')
+            new Error(err?.error?.message || 'Password reset request failed.')
         );
       })
     );
