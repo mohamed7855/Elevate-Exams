@@ -1,0 +1,18 @@
+.main{
+    padding: 0;
+    background-color: #F0F4FC;
+    --border-radius: 3rem;
+    filter: drop-shadow(0px 5px 1000px #F0F4FC);
+    -webkit-filter: drop-shadow(0px 5px 1000px #F0F4FC);
+}
+.grid{
+    margin-bottom: -0.5rem;
+}
+h2{
+    line-height: 75px;
+    margin-block: 25px;
+}
+.logo{
+    --primary-color: #122D9C
+}
+.sub-text{}

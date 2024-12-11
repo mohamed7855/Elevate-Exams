@@ -1,4 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
-:root{
-    --main-color: #4461F2
+:root {
+  --main-color: #4461f2;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("assets/fonts/Poppins-Regular.woff2") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.text-main {
+  color: var(--main-color);
 }
