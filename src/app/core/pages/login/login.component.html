@@ -1,8 +1,12 @@
-<form [formGroup]="loginForm" (ngSubmit)="login()">
-    <input type="text" formControlName="email">
-    <br>
-    <input type="password" formControlName="password">
-    <br>
-    <button>Login</button>
-    <app-button [classes]="'w-50 bg-danger'" [text]="'add'" (clickEmitter)="sayHello()"></app-button>
+<form [formGroup]="loginForm">
+    <h2 class="mt-4 font-bold text-4xl">Sign in</h2>
+    <input type="email" formControlName="email" pInputText variant="filled" placeholder="Enter Email"
+        class="block mt-4 md:w-9 w-full" />
+    <p-password formControlName="password" [toggleMask]="true" placeholder="Password" variant="filled"
+        styleClass="mt-4 md:w-9 w-full" inputStyleClass="w-full" />
+
+    <a class="mt-2 block no-underline text-main text-right md:w-9 w-full" routerLink="/auth/forgetPassword">Recover
+        Password</a>
+
+    <app-button [classes]="'w-50 mt-4 md:w-9 w-full bg-main border-round-xl'" [text]="'Sign in'" (click)="login()"></app-button>
 </form>
