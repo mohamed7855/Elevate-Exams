@@ -1,6 +1,9 @@
-<form [formGroup]="verifyCodeForm" (ngSubmit)="verifyCode()">
-    <input type="text" formControlName="resetCode" placeholder="Enter code">
-    <input type="text" formControlName="resetCode" placeholder="Enter code">
-    <br>
-    <button>Submit</button>
+<form [formGroup]="verifyCodeForm">
+    <h2 class="mt-4 font-bold text-4xl">Verify code</h2>
+    <input type="text" formControlName="resetCode" pInputText variant="filled" placeholder="Enter code"
+        class="block mt-4 md:w-9 w-full" />
+    <a class="mt-2 block no-underline text-right md:w-9 w-full">Didn't receive a code?<span
+            class="text-main cursor-pointer"> Resend</span></a>
+    <app-button [classes]="'w-50 mt-4 md:w-9 w-full bg-main border-round-xl'" [text]="'Verify'"
+        (click)="verifyCode()"></app-button>
 </form>

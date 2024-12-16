@@ -7,11 +7,13 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthApiService } from 'auth-api';
+import { ButtonComponent } from '../../../shared/components/ui/button/button.component';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-verify-code',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, InputTextModule, ButtonComponent],
   templateUrl: './verify-code.component.html',
   styleUrl: './verify-code.component.scss',
 })
