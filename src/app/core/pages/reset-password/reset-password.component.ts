@@ -6,11 +6,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthApiService } from 'auth-api';
+import { PasswordModule } from 'primeng/password';
+import { ButtonComponent } from '../../../shared/components/ui/button/button.component';
 
 @Component({
   selector: 'app-reset-password',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, PasswordModule, ButtonComponent],
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.scss',
 })
@@ -23,8 +25,10 @@ export class ResetPasswordComponent {
   constructor(private _authApiService: AuthApiService) {}
 
   resetPassword() {
-    this._authApiService
-      .resetPassword(this.resetPasswordForm.value)
-      .subscribe((res) => {});
+    const data = {
+      ...this.resetPasswordForm.value,
+      email: sessionStorage.getItem('email'),
+    };
+    this._authApiService.resetPassword(data).subscribe((res) => {});
   }
 }
