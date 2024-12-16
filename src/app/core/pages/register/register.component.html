@@ -1,17 +1,21 @@
-<form [formGroup]="registerForm" (ngSubmit)="register()">
-    <input type="text" formControlName="username" placeholder="Enter Username">
-    <br>
-    <input type="text" formControlName="firstName" placeholder="Enter firstName">
-    <br>
-    <input type="text" formControlName="lastName" placeholder="Enter lastName">
-    <br>
-    <input type="email" formControlName="email" placeholder="Enter email">
-    <br>
-    <input type="password" formControlName="password" placeholder="Enter password">
-    <br>
-    <input type="password" formControlName="rePassword" placeholder="Enter rePassword">
-    <br>
-    <input type="tel" formControlName="phone" placeholder="Enter phone">
-    <br>
-    <button>Submit</button>
+<form [formGroup]="registerForm">
+    <h2 class="mt-4 font-bold text-4xl">Sign up</h2>
+    <input type="text" formControlName="username" pInputText variant="filled" placeholder="User Name"
+        class="block mt-4 md:w-9 w-full" />
+    <input type="text" formControlName="firstName" pInputText variant="filled" placeholder="First Name"
+        class="block mt-4 md:w-9 w-full" />
+    <input type="text" formControlName="lastName" pInputText variant="filled" placeholder="Last Name"
+        class="block mt-4 md:w-9 w-full" />
+    <input type="email" formControlName="email" pInputText variant="filled" placeholder="Email"
+        class="block mt-4 md:w-9 w-full" />
+    <input type="text" formControlName="phone" pInputText variant="filled" placeholder="Phone"
+        class="block mt-4 md:w-9 w-full" />
+    <p-password formControlName="password" [toggleMask]="true" placeholder="Password" variant="filled"
+        styleClass="mt-4 md:w-9 w-full" inputStyleClass="w-full" />
+    <p-password formControlName="rePassword" [toggleMask]="true" placeholder="Confirm Password" variant="filled"
+        styleClass="mt-4 md:w-9 w-full" inputStyleClass="w-full" />
+    <a class="mt-2 block no-underline text-center md:w-9 w-full">Already have an account? <span
+            class="text-main cursor-pointer" routerLink="/auth/login">Login</span></a>
+    <app-button [classes]="'w-50 mt-4 md:w-9 w-full bg-main border-round-xl'" [text]="'Create Account'"
+        (click)="register()"></app-button>
 </form>
