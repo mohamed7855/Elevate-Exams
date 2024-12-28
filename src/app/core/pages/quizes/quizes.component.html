@@ -43,4 +43,11 @@
 </div>
 <div class="p-3 bg-white mt-5 border-round-xl">
     <h4 class="text-main">Quizes</h4>
+    <div class="grid justify-content-center md:justify-content-start gap-3 md:gap-0">
+        @for (q of quizes; track $index) {
+        <div class="md:col-6 lg:col-4">
+            <app-quiz [quiz]="q"></app-quiz>
+        </div>
+        }
+    </div>
 </div>
