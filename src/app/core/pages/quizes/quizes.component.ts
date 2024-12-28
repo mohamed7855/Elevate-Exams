@@ -17,8 +17,8 @@ export class QuizesComponent {
   quizes: any = [];
 
   ngOnInit(): void {
-    this._quizesService.getAllQuizes().subscribe((res) => {
-      console.log(res);
-    });
+    // this._quizesService.getAllQuizes().subscribe((res) => {
+    //   console.log(res);
+    // });
   }
 }
