@@ -15,5 +15,12 @@ export const routes: Routes = [
         ]
         
     },
-    {path: 'home', loadComponent: ()=> import('./core/layout/home-layout/home-layout.component').then((c)=>c.HomeLayoutComponent)},
+    {
+        path: 'home',
+        loadComponent: ()=> import('./core/layout/home-layout/home-layout.component').then((c)=>c.HomeLayoutComponent),
+        children: [
+            {path: '', redirectTo: 'quizes', pathMatch: 'full'},
+            {path: 'quizes', loadComponent: ()=>import('./core/pages/quizes/quizes.component').then((c)=>c.QuizesComponent)},
+        ] 
+    },
 ];
