@@ -5,11 +5,12 @@ import { QuizComponent } from '../../layout/quiz/quiz.component';
 import { QuizesService } from '../../services/quizes.service';
 import { isPlatformBrowser } from '@angular/common';
 import { Quiz } from '../../interfaces/QuizesRes';
+import { UserDetailsComponent } from '../../layout/user-details/user-details.component';
 
 @Component({
   selector: 'app-quizes',
   standalone: true,
-  imports: [ProgressBarModule, ImageModule, QuizComponent],
+  imports: [QuizComponent, UserDetailsComponent],
   templateUrl: './quizes.component.html',
   styleUrl: './quizes.component.scss',
 })
@@ -19,7 +20,7 @@ export class QuizesComponent {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
-  quizes: Quiz[] = [];
+  quizes!: Quiz[];
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
