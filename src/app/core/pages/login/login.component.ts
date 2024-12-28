@@ -9,7 +9,8 @@ import {
 } from '@angular/forms';
 import { AuthApiService } from 'auth-api';
 import { ButtonComponent } from '../../../shared/components/ui/button/button.component';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { TokenService } from '../../services/token.service';
 
 @Component({
   selector: 'app-login',
@@ -30,10 +31,16 @@ export class LoginComponent {
     password: new FormControl(null, Validators.required),
   });
 
-  constructor(private _authApiService: AuthApiService) {}
+  constructor(
+    private _authApiService: AuthApiService,
+    private _tokenService: TokenService,
+    private _router: Router
+  ) {}
 
   login() {
-    this._authApiService.login(this.loginForm.value).subscribe((res) => {});
+    this._authApiService.login(this.loginForm.value).subscribe((res) => {
+      this._tokenService.setToken(res.token);
+      this._router.navigate(['/home']);
+    });
   }
-
 }
