@@ -7,7 +7,7 @@ export interface QuizesAPIRes extends QuizesRes {
   metadata: Metadata;
 }
 
-interface Quiz {
+export interface Quiz {
   _id: string;
   name: string;
   icon: string;

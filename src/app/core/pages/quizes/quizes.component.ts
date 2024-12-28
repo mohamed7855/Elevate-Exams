@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ImageModule } from 'primeng/image';
 import { QuizComponent } from '../../layout/quiz/quiz.component';
 import { QuizesService } from '../../services/quizes.service';
+import { isPlatformBrowser } from '@angular/common';
+import { Quiz } from '../../interfaces/QuizesRes';
 
 @Component({
   selector: 'app-quizes',
@@ -12,13 +14,18 @@ import { QuizesService } from '../../services/quizes.service';
   styleUrl: './quizes.component.scss',
 })
 export class QuizesComponent {
-  constructor(private _quizesService: QuizesService) {}
+  constructor(
+    private _quizesService: QuizesService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
-  quizes: any = [];
+  quizes: Quiz[] = [];
 
   ngOnInit(): void {
-    // this._quizesService.getAllQuizes().subscribe((res) => {
-    //   console.log(res);
-    // });
+    if (isPlatformBrowser(this.platformId)) {
+      this._quizesService.getAllQuizes().subscribe((res) => {
+        this.quizes = res.subjects;
+      });
+    }
   }
 }
