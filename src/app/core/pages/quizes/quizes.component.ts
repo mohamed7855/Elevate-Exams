@@ -6,11 +6,12 @@ import { QuizesService } from '../../services/quizes.service';
 import { isPlatformBrowser } from '@angular/common';
 import { Quiz } from '../../interfaces/QuizesRes';
 import { UserDetailsComponent } from '../../layout/user-details/user-details.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-quizes',
   standalone: true,
-  imports: [QuizComponent, UserDetailsComponent],
+  imports: [QuizComponent, UserDetailsComponent, ScrollingModule],
   templateUrl: './quizes.component.html',
   styleUrl: './quizes.component.scss',
 })

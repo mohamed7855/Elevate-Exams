@@ -1,11 +1,11 @@
 <app-user-details></app-user-details>
 <div class="p-3 bg-white mt-5 border-round-xl">
     <h4 class="text-main">Quizes</h4>
-    <div class="grid justify-content-center md:justify-content-start gap-3 md:gap-0">
-        @for (q of quizes; track $index) {
-        <div class="md:col-6 lg:col-4">
+
+    <!-- Vitrual Scroll -->
+    <cdk-virtual-scroll-viewport itemSize="50" class="quiz-viewport">
+        <div *cdkVirtualFor="let q of quizes; let i = index" class="example-item md:col-6 lg:col-4">
             <app-quiz [quiz]="q"></app-quiz>
         </div>
-        }
-    </div>
+    </cdk-virtual-scroll-viewport>
 </div>
