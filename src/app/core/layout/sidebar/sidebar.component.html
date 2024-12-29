@@ -1,8 +1,8 @@
 <p-sidebar [modal]="false" [showCloseIcon]="false" [visible]="true" [classList]="'shadow-none'" [styleClass]="'transparent'">
     <img src="assets\Logo.png" alt="" class="block w-13rem mb-7">
-    <ul class="list-none p-0 m-0 overflow-hidden flex row-gap-4 flex-column">
+    <ul class="list-none p-0 m-0 py-2 overflow-hidden flex row-gap-4 flex-column">
         <li class="cursor-pointer">
-            <a class="inline-block p-2 border-round-md text-lg font-semibold">
+            <a routerLink="/home" routerLinkActive="bg-main text-white" class="no-underline inline-block p-2 border-round-md text-lg font-semibold">
                 <i class="fa-solid fa-table-cells-large mr-3"></i>
                 <span>Dashboard</span>
             </a>
